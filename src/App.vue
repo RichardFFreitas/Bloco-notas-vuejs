@@ -1,21 +1,15 @@
 <script setup lang="ts">
-import Title from './components/Title.vue'
+import Header from './components/Header.vue'
 </script>
 
 <template>
+  
   <div>
-    <Title title="Anotações" />
-    <div class="container">
+    <Header title="Anotações" />
       <RouterView></RouterView>
-    </div>
   </div>
 </template>
 
 <style scoped>
-.container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 60px;
-}
+
 </style>

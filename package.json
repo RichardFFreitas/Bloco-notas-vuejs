@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "server": "json-server --watch db/db.json --port 5173",
+    "dev": "vite --port 3000",
+    "server": "json-server --watch db/db.json",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },

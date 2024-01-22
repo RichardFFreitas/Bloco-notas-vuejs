@@ -35,7 +35,6 @@ interface AnotationIF {
 
 const props = defineProps({
     anotations: {
-        required: true,
         type: Array as PropType<AnotationIF[]>
     }
 })

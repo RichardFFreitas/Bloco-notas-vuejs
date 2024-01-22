@@ -27,13 +27,15 @@ const { text, icon, click } = toRefs(props);
     color: #fafafa;
     border: none;
     padding: 15px;
-    border-radius: 30px;
+    border-radius: 20px;
     font-weight: 400;
     font-size: 16px;
-    width: 100%;
 }
 
 .btn i {
     margin-right: 4px;
+}
+.pi{
+    font-size: 12px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <form @submit.prevent="submit">
             <textarea class="textarea" v-model.trim="anotation.text" rows="7" cols="40"
                 placeholder="Exp.: Ao ligar falar com Luiza"></textarea>
@@ -11,13 +11,14 @@
             <label for="category" class="label">Categorização</label>
             <select class="input" id="category" v-model="anotation.categoria">
                 <option value="" disabled></option>
-                <option>importante</option>
-                <option>irrelevante</option>
-                <option>descartável</option>
+                <option>Importante</option>
+                <option>Irrelevante</option>
+                <option>Descartável</option>
             </select>
 
             <label for="date" class="label">Lembrete</label>
-            <input id="date" v-model="anotation.data" placeholder="Selecione uma data" type="date" class="input">
+            <input id="date" v-model="anotation.data" placeholder="Selecione uma data" type="text"
+                onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" class="input">
 
 
             <div class="mt-5">
@@ -30,47 +31,20 @@
     </div>
 </template>
 
-<script setup lang="ts">
-import Button from '../components/Button.vue';
-import api from '../services/api'
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-const route = useRouter();
-
-const anotation = ref({
-    text: '',
-    valor: '',
-    categoria: '',
-    data: ''
-});
-
-const limpar = () => {
-    anotation.value.text = '';
-    anotation.value.valor = '';
-    anotation.value.categoria = '';
-    anotation.value.data = '';
-};
-
-const submit = async () => {
-    try {
-        await api.post("/anotations", anotation.value);
-        limpar();
-        route.push({ path: '/' });
-    } catch (error) {
-        alert('Falha ao salvar a anotação. Por favor, tente novamente.');
-    }
-};
-</script>
-
-
 <style>
+
+.container {
+    width: 100%;
+
+}
+
 form {
+    margin: 22px;
     display: flex;
     flex-direction: column;
 }
 
 .textarea {
-    resize: none;
     border: none;
     border-radius: 7px;
     padding: 12px;
@@ -78,16 +52,18 @@ form {
     outline: none;
 }
 
+
+
 .label {
-    font-size: 12px;
-    color: #ccc;
-    font-weight: 800;
+    font-size: 16px;
+    color: #0000006e;
+    font-weight: 700;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 .input {
-    padding: 12px;
+    padding: 18px;
     border: none;
     border-radius: 25px;
     font-size: 16px;
@@ -130,3 +106,41 @@ form {
     font-size: 25px;
 }
 </style>
+
+<script setup lang="ts">
+import Button from '../components/Button.vue';
+import api from '../services/api'
+
+import axios from 'axios';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+const route = useRouter();
+
+const anotation = ref({
+    text: '',
+    valor: '',
+    categoria: '',
+    data: ''
+});
+
+const limpar = () => {
+    anotation.value.text = '';
+    anotation.value.valor = '';
+    anotation.value.categoria = '';
+    anotation.value.data = '';
+};
+
+const submit = async () => {
+    try {
+        await axios.post("/anotations", anotation.value);
+
+        limpar();
+
+        route.push({ path: '/' });
+    } catch (error) {
+        alert('Falha ao salvar a anotação. Por favor, tente novamente.');
+    }
+};
+</script>
+
+

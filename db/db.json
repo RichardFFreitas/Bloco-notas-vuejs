@@ -1,3 +1,10 @@
 {
-    "anotations": []
+  "anotations": [
+    {
+        "id": "1",
+        "text": "",
+        "valor": 0,
+        	"categoria": "",
+        "data": ""
+    }]
 }

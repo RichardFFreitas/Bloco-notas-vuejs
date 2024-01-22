@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <div class="paperclip">
             <div class="icon-paperclip">
                 <i class="pi pi-paperclip"></i>
@@ -17,8 +17,15 @@
 </script>
 
 <style scoped>
+.container{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .paperclip {
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
@@ -27,23 +34,22 @@
 
 .icon-paperclip i {
     color: #B7BBBE;
-    font-size: 45px;
+    font-size: 48px;
     transform: scale(-1);
 }
 
 .text-paperclip {
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 800;
     color: #1295FD;
     display: inline-grid;
     justify-items: center;
-    gap: 5px;
-
 }
 
 .text-paperclip span {
     font-size: 12px;
-    color: #B7BBBE;
+    color: grey;
     font-weight: 500;
+    margin-bottom: 24px;
 }
 </style>

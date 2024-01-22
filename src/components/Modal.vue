@@ -63,18 +63,18 @@
     display: flex;
     color: black;
     justify-content: space-between;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #797979;
     padding: 20px 12px;
   }
   
   .header-pop i {
-    color: #ccc;
+    color: #797979;
     cursor: pointer;
   }
   
   .body-pop {
     padding: 12px;
-    color: #ccc;
+    color: #797979;
     font-size: 14px;
   }
   
@@ -99,7 +99,7 @@
   }
   
   .outline {
-    color: #ccc;
+    color: #797979;
     background: #fff;
     border: 1px solid #ccc;
     padding: 15px;
