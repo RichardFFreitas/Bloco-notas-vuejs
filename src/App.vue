@@ -1,10 +1,10 @@
 <script setup lang="ts">
-// import Title from './components/Title.vue'
+import Title from './components/Title.vue'
 </script>
 
 <template>
   <div>
-    <Titulo title="Anotações" />
+    <Title title="Anotações" />
     <div class="container">
       <RouterView></RouterView>
     </div>
