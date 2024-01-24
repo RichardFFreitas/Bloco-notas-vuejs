@@ -1,54 +1,44 @@
 <template>
-    <!-- Conteúdo com barra lateral -->
-    <div v-if="isDesktopRef">
-        <div class="container">
+<!-- Conteúdo com barra lateral -->
+<div>
+        <div class="container" v-if="anotations.length <= 0 && isDesktopRef">
             <PaperClip />
-        </div>
-
-
-        <div class="notes">
-            <aside class="barra-lateral">
-                <div class="noteplus">
-                    <Button class="lateral-button" text="Criar anotação" icon="pi pi-plus" :onClick="proximaTela" />
-                </div>
-            </aside>
+            <Button text="Criar anotação" icon="pi pi-plus" :onClick="proximaTela" />
         </div>
     </div>
+
+    <div class="anotations" v-if="anotations.length >= 1 && isDesktopRef">
+        <aside>
+            <Card :anotations="anotations" />
+            <div class="noteplus">
+                <Button text="Criar anotação" icon="pi pi-plus" :onClick="proximaTela" />
+            </div>
+        </aside>
+    </div>
     <!-- Conteúdo sem barra lateral -->
-    <div v-if="!isDesktopRef">
-        <div class="container">
+    <div>
+        <div class="container" v-if="anotations.length <= 0 && !isDesktopRef">
             <PaperClip />
+            <Button text="Criar anotação" icon="pi pi-plus" :onClick="proximaTela" />
+        </div>
+    </div>
+
+    <div class="anotations" v-if="anotations.length >= 1 && !isDesktopRef">
+        <Card text="Exp:. Ao ligar falar com luiza" data="20/08/2001"/>
+        <div class="noteplus">
             <Button text="Criar anotação" icon="pi pi-plus" :onClick="proximaTela" />
         </div>
     </div>
 </template>
 
-
-<style scoped>
+<styled scoped>
 .container {
     width: 100%;
     margin-top: 140px;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-}
-
-.noteplus{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50rem;
-}
-
-
-.barra-lateral{
-    z-index: -1;
-    position: absolute;
-    top: 0;
-    width: 350px;
-    height: 100%;
-    background-color: #797979;
+    
 }
 
 
@@ -67,25 +57,33 @@
         margin-top: 80px;
     }
 }
-</style>
+</styled>
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';
 
 import PaperClip from '../components/Paperclip.vue';
+import Card from '../components/Card.vue';
 import Button from '../components/Button.vue';
-
+import api from '../services/api';
 
 
 const route = useRouter();
-
+const anotations = ref([]);
 
 const proximaTela = () => {
     route.push({ path: '/form' });
 };
 
-
+const fetchAnotations = async () => {
+    try {
+        const response = await api.get('/notes');
+        anotations.value = response.data;
+    } catch (error) {
+        console.error('Erro ao buscar anotações:', error);
+    }
+};
 
 const setupResizeListener = () => {
     const isDesktop = () => window.innerWidth >= 768;
@@ -108,5 +106,5 @@ const setupResizeListener = () => {
 
 const isDesktopRef = setupResizeListener();
 
-
+onMounted(fetchAnotations);
 </script>

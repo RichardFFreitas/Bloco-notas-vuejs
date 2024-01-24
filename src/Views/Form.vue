@@ -9,7 +9,7 @@
 
 
             <label for="category" class="label">Categorização</label>
-            <select class="input" id="category" v-model="anotation.categoria">
+            <select class="input" id="category" v-model="anotation.categorias">
                 <option value="" disabled></option>
                 <option>Importante</option>
                 <option>Irrelevante</option>
@@ -22,7 +22,7 @@
 
 
             <div class="mt-5">
-                <button class="ic-trash" @click.prevent="limpar">
+                <button class="ic-trash" @click.prevent="">
                     <i class="pi pi-trash"></i>
                 </button>
                 <Button text="Salvar" />
@@ -107,40 +107,53 @@ form {
 }
 </style>
 
-<script setup lang="ts">
+<script lang="ts">
 import Button from '../components/Button.vue';
 import api from '../services/api'
 
-import axios from 'axios';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-const route = useRouter();
 
-const anotation = ref({
-    text: '',
-    valor: '',
-    categoria: '',
-    data: ''
+import { defineComponent } from 'vue';
+// import { useRouter } from 'vue-router';
+
+// const route = useRouter();
+
+
+
+export default defineComponent({
+    components:{
+        Button,
+    },
+    data(){
+        return {
+            anotation:{
+                text:'',
+                valor:0,
+                categorias:'',
+                data:'',
+            },
+        };
+    },
+    methods: {
+        async submit() {
+            try {
+                await api.post('/notes', this.anotation)
+
+                this.limpar();
+            } catch(error) {
+                console.log(error)
+            }
+        },
+
+        limpar() {
+        this.anotation.text = '';
+        this.anotation.valor = 0;
+        this.anotation.categorias = '';
+        this.anotation.data = '';
+        },
+    },
 });
 
-const limpar = () => {
-    anotation.value.text = '';
-    anotation.value.valor = '';
-    anotation.value.categoria = '';
-    anotation.value.data = '';
-};
 
-const submit = async () => {
-    try {
-        await axios.post("/anotations", anotation.value);
-
-        limpar();
-
-        route.push({ path: '/' });
-    } catch (error) {
-        alert('Falha ao salvar a anotação. Por favor, tente novamente.');
-    }
-};
 </script>
 
 

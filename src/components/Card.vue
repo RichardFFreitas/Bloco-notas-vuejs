@@ -40,13 +40,12 @@ const props = defineProps({
 })
 
 </script>
-  
+
 <style scoped>
 .card {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
     padding: 12px;
     background: #fff;
     border-radius: 10px;

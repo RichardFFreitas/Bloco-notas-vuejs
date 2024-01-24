@@ -16,7 +16,7 @@
           <button class="outline" @click="$emit('close')">
             Cancelar
           </button>
-          <button class="btn-delete" @click="handleDelete(props.deletenote)">
+          <button class="btn-delete" >
             Excluir
           </button>
         </div>
@@ -27,23 +27,15 @@
   <script setup lang="ts">
   import { defineProps } from 'vue';
   
-  import api from '../services/api';
+
   
-  const handleDelete = async (id: number | string) => {
-    await api.delete(`/anotations/${id}`)
-      .then(() => {
-        alert('Anotação exluida com sucesso, atualize a pagina!')
-      })
-      .catch((error) => {
-        alert(`Não foi possivel excluir sua anotação ${error}`);
-      });
-  }
+  
   
   const props = defineProps({
     show: Boolean,
     deletenote: {
       required: true,
-      type: [Number, String]
+      type: [Number, String,]
     }
   });
   

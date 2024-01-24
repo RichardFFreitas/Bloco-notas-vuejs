@@ -13,6 +13,7 @@
 <style scoped>
 .container{
     width: 100%;
+    
 }
 header{
     justify-content: space-between;
