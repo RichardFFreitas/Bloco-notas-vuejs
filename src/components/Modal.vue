@@ -32,11 +32,7 @@
   
   
   const props = defineProps({
-    show: Boolean,
-    deletenote: {
-      required: true,
-      type: [Number, String,]
-    }
+    show: Boolean
   });
   
   </script>
@@ -49,6 +45,7 @@
     top: 30%;
     left: 30%;
     z-index: 9;
+    border: 1px solid #797979;
   }
   
   .header-modal {

@@ -4,7 +4,7 @@
             <div class="title">
                 {{ title }}
             </div>
-            <i class="pi pi-times button-close" @click="$emit('close')"></i>
+            <i class="pi pi-times button-close" @click="telaInicial"></i>
         </header>
     </div>
 </template>
@@ -32,11 +32,18 @@ header{
     font-size: 28px;
     font-weight: 700;
 }
+
+@media (min-width: 767px){
+    .title{
+        color: #fff;
+    }
+}
 </style>
 
 
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
 import { defineProps, toRefs } from 'vue';
 interface TitleInterface {
     title: string,
@@ -45,5 +52,12 @@ interface TitleInterface {
 const props = defineProps<TitleInterface>()
 
 const { title } = toRefs(props);
+
+const route = useRouter();
+
+
+const telaInicial = () => {
+    route.push({ path: '/' });
+};
 </script>
 

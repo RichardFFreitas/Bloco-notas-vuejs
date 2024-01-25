@@ -1,15 +1,15 @@
 <template>
     <div class="container">
-        <form @submit.prevent="submit">
-            <textarea class="textarea" v-model.trim="anotation.text" rows="7" cols="40"
+        <form @submit.prevent="telaNotes">
+            <textarea class="textarea" v-model.trim="notes.text" rows="7" cols="40"
                 placeholder="Exp.: Ao ligar falar com Luiza"></textarea>
 
             <label for="valor" class="label">Potencial do négocio</label>
-            <input id="valor" v-model="anotation.valor" placeholder="R$00,00" type="number" class="input-number input">
+            <input id="valor" v-model="notes.valor" placeholder="R$00,00" type="number" class="input-number input">
 
 
             <label for="category" class="label">Categorização</label>
-            <select class="input" id="category" v-model="anotation.categorias">
+            <select class="input" id="category" v-model="notes.categoria">
                 <option value="" disabled></option>
                 <option>Importante</option>
                 <option>Irrelevante</option>
@@ -17,15 +17,15 @@
             </select>
 
             <label for="date" class="label">Lembrete</label>
-            <input id="date" v-model="anotation.data" placeholder="Selecione uma data" type="text"
+            <input id="date" v-model="notes.data" placeholder="Selecione uma data" type="text"
                 onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" class="input">
 
 
             <div class="mt-5">
-                <button class="ic-trash" @click.prevent="">
+                <button class="ic-trash" @click.prevent="limpar">
                     <i class="pi pi-trash"></i>
                 </button>
-                <Button text="Salvar" />
+                <Button text="Salvar" icon="pi pi-save"/>
             </div>
         </form>
     </div>
@@ -81,13 +81,16 @@ form {
 }
 
 .mt-5 {
-    margin-top: 100px;
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: inline-flex;
-    justify-content: space-between;
 }
 
 .mt-5 .btn {
-    width: 80%;
+    width: 340px;
+    margin-left: 14px;
 }
 
 .ic-trash {
@@ -107,51 +110,30 @@ form {
 }
 </style>
 
-<script lang="ts">
+<script setup lang="ts">
 import Button from '../components/Button.vue';
-import api from '../services/api'
+import { useRouter } from 'vue-router';
+import { ref } from 'vue';
+const route = useRouter();
 
+const telaNotes = () => {
+    route.push({ path: '/notes' })
+}
 
-import { defineComponent } from 'vue';
-// import { useRouter } from 'vue-router';
-
-// const route = useRouter();
-
-
-
-export default defineComponent({
-    components:{
-        Button,
-    },
-    data(){
-        return {
-            anotation:{
-                text:'',
-                valor:0,
-                categorias:'',
-                data:'',
-            },
-        };
-    },
-    methods: {
-        async submit() {
-            try {
-                await api.post('/notes', this.anotation)
-
-                this.limpar();
-            } catch(error) {
-                console.log(error)
-            }
-        },
-
-        limpar() {
-        this.anotation.text = '';
-        this.anotation.valor = 0;
-        this.anotation.categorias = '';
-        this.anotation.data = '';
-        },
-    },
+const notes = ref({
+    text: '',
+    valor: '',
+    categoria: '',
+    data: '',
 });
+
+const limpar = () => {
+    notes.value.text = '';
+    notes.value.valor = '';
+    notes.value.categoria = '';
+    notes.value.data = '';
+}
+
 
 
 </script>
