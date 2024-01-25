@@ -11,5 +11,21 @@ Tecnologias/Ferramentas Utilizadas:
 - [Vue.js](https://vuejs.org)
 - [TypeScript](https://www.typescriptlang.org)
 - [PrimeIcon](https://primevue.org/icons/#spin)
-- [Vue-Router]()
-![Button](https://www.npmjs.com/package/json-server)
+- [Vue-Router](https://router.vuejs.org)
+- [Vite](https://vitejs.dev)
+
+
+## Telas 🖥️
+
+- ### Tela Inicial
+
+<p align="center">
+   <img src="./src/assets/tela inicial.png" style="width 600px; height: 350px; border-radius:10px"/>
+</p>
+
+
+- ### Tela de criação das notas 
+
+<p align="center">
+   <img src="./src/assets/form.png"/>
+</p>
