@@ -20,7 +20,7 @@ Tecnologias/Ferramentas Utilizadas:
 - ### Tela Inicial
 
 <p align="center">
-   <img src="./src/assets/tela inicial.png" style="width 600px; height: 350px; border-radius:10px"/>
+   <img src="./src/assets/tela inicial.png"/>
 </p>
 
 
@@ -29,3 +29,49 @@ Tecnologias/Ferramentas Utilizadas:
 <p align="center">
    <img src="./src/assets/form.png"/>
 </p>
+
+- ### Tela das anotações
+
+<p align="center">
+   <img src="./src/assets/tela com anotações.png"/>
+</p>
+
+
+## Instalação e Configuração 🔧
+
+- Clone este projeto
+
+```bash
+    git clone https://github.com/RichardFFreitas/Bloco-notas-vuejs
+```
+
+- Tenha um Editor de código como Visual Studio Code, Sublime Text, etc. Depois entre na pasta client com o comando:
+
+```bash
+    cd bloco-anotacoes-speedio
+```
+
+- depois instale as dependências com o seu gerenciador de pacotes
+
+```bash
+    npm installl
+
+    #ou
+    yarn
+
+    #ou
+    pnpm i
+```
+
+- Em seguida execute o comando de inicialização
+
+```bash
+    npm run dev
+
+    #ou
+    yarn dev
+
+    #ou
+    pnpm dev
+```
+

@@ -12,6 +12,8 @@
                     <Card text="Exp:. Ao ligar falar com luiza" data="20/08/2001" />
                     <Card text="Exp:. Ao ligar falar com luiza" data="20/08/2001" />
                     <Card text="Exp:. Ao ligar falar com luiza" data="20/08/2001" />
+                    <Card text="Exp:. Ao ligar falar com luiza" data="20/08/2001" />
+                    <Card text="Exp:. Ao ligar falar com luiza" data="20/08/2001" />
                 </div>
                 <div class="noteplus">
                     <Button class="lateral-button" text="Criar anotação" icon="pi pi-plus" :onClick="proximaTela" />
